@@ -2,10 +2,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+
+  .productsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: end;
+
+    .seeMore {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #000;
+      border-bottom: 2px solid var(--secondary-color);
+      cursor: pointer;
+    }
+  }
+    
 
   h1 {
     font-size: 40px;
-    font-family: Josefin Sans;
     color: #000;
     margin-top: 60px;
   }
@@ -17,6 +33,8 @@
     width: 100%;
     justify-content: center;
     margin-top: 50px;
+    
+    
 
     .categoryItem {
       display: flex;
@@ -24,7 +42,17 @@
       align-items: center;
       gap: 20px;
       font-size: 24px;
-      font-family: Josefin Sans;
+      border-bottom: 2px solid #f5f5f5;
+
+      p {
+        margin-bottom: 10px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.02);
+        transition: all 0.1s ease-in-out;
+      }
     }
   }
 
