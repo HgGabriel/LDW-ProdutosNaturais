@@ -1,11 +1,13 @@
-import './App.css'
-import AppRouter from './router'
+import "./App.css";
+import { AppProvider } from "./context/AppContext";
+import AppRouter from "./router";
 
 function App() {
-
   return (
-  <AppRouter />
-)
+    <AppProvider>
+      <AppRouter />
+    </AppProvider>
+  );
 }
 
-export default App
+export default App;

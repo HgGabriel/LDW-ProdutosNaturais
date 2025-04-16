@@ -1,16 +1,27 @@
 
 .layout {
     height: 100vh;
-
+    display: flex;
+    flex-direction: column;
+    
     .header{
         width: 100%;
         display: flex;
         justify-content: center;
-        padding: 20px;
+        position: fixed;
+        z-index: 100;
+        
     }
 
     .main {
-        margin-top: 100px;
+        transition: all 0.2s ease;
+    }
+
+    .footer {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: auto;
     }
 
 }

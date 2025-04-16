@@ -1,0 +1,14 @@
+export type product = {
+  id: number;
+  name: string;
+  description: string;
+  category: string;
+  subCategory: string;
+  brand: string;
+  freeShipping: boolean;
+  price: number;
+  image: string;
+  rating: number;
+  howToUse: string;
+  ingredients: string[];
+};

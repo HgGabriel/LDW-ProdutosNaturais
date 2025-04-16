@@ -1,0 +1,12 @@
+.bannerContainer {
+  width: 100%;
+
+  .swiper {
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+  }
+}
