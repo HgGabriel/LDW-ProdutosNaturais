@@ -17,7 +17,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     setPromoProducts(shuffleArray(categoryData[currentCategory].products));
     console.log(categoryData[currentCategory].products);
-  }, []);
+  }, [currentCategory]);
 
   useEffect(() => {
     console.log(currentSubCategory);

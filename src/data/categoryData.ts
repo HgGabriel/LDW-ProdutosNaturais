@@ -35,7 +35,8 @@ type CategoryData = {
     primaryHover: string;
     banner: string;
     subCategories: categoryItem[];
-    products: product[];
+    products: product[
+    ];
   };
 };
 
@@ -482,13 +483,6 @@ export const categoryData: CategoryData = {
     
   },
   foods: {
-  //   --primary-color: #DDEB9D;
-  // --primary-hover: #c2d97d;
-  // --secondary-color: #A0C878;
-  // --accent-color: #A0C878;
-  // --accent-bg: #f4fae0;
-  // --text-color: #222222;
-  // --muted-text-color: #4d4d4d;
     primaryColor: "#DDEB9D",
     secondaryColor: "#A0C878",
     accentColor: "#A0C878",
@@ -517,6 +511,8 @@ export const categoryData: CategoryData = {
     primaryHover: "#1f4f60",
     banner: "",
     subCategories: [],
-    products: [],
+    products: [
+
+    ],
   },
 };
