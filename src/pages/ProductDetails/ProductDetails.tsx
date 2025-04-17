@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 import styles from "./ProductDetails.module.css";
 import { categoryData } from "../../data/categoryData";
 import { Rating } from "react-simple-star-rating";
@@ -27,13 +28,43 @@ const ProductDetails: React.FC = () => {
     );
   };
 
-  const toggleCart = () => {
-    setCart((prev) =>
-      prev.includes(productId)
-        ? prev.filter((id) => id !== productId)
-        : [...prev, productId]
-    );
+  const handleCartToggle = () => {
+    const action = isInCart ? "remover do carrinho" : "adicionar ao carrinho";
+  
+    Swal.fire({
+      title: `Deseja ${action}?`,
+      html: `
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <img src="${product.image}" alt="${product.name}" style="width: 120px; height: auto; border-radius: 10px; margin-bottom: 12px;" />
+          <h3 style="margin: 0;">${product.name}</h3>
+          <p style="font-size: 18px; color: #555;">R$ ${product.price.toFixed(2)}</p>
+        </div>
+      `,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Sim",
+      cancelButtonText: "Cancelar",
+      confirmButtonColor: "var(--secondary-color)",
+      cancelButtonColor: "#d33",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setCart((prev) =>
+          prev.includes(productId)
+            ? prev.filter((id) => id !== productId)
+            : [...prev, productId]
+        );
+  
+        Swal.fire({
+          title: isInCart ? "Removido!" : "Adicionado!",
+          text: `Produto ${isInCart ? "removido" : "adicionado"} com sucesso.`,
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
+    });
   };
+  
 
   return (
     <div className={styles.wrapper}>
@@ -65,7 +96,7 @@ const ProductDetails: React.FC = () => {
               key={section}
               className={styles.section}
               onClick={() => setSelectedSection(section)}
-              style={{ opacity: selectedSection === section ? "1" : "0.2" }}
+              style={{ opacity: selectedSection === section ? "1" : "0.5", fontWeight: selectedSection === section ? "bold" : "normal" }}
             >
               <p className={styles.sectionText}>
                 {{
@@ -109,7 +140,7 @@ const ProductDetails: React.FC = () => {
             <i className={`bi ${isFavorite ? "bi-heart-fill" : "bi-heart"}`}></i>
             <p>{isFavorite ? "REMOVER DOS FAVORITOS" : "ADICIONAR AOS FAVORITOS"}</p>
           </button>
-          <button className={styles.cartButton} onClick={toggleCart}>
+          <button className={styles.cartButton} onClick={handleCartToggle}>
             <i className="bi bi-cart-fill"></i>
             <p>{isInCart ? "REMOVER DO CARRINHO" : "ADICIONAR AO CARRINHO"}</p>
           </button>

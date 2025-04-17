@@ -10,7 +10,7 @@ import { product } from "../../types";
 const Home: React.FC = () => {
   const { trendingCategories, currentCategory } = useAppContext();
   const [currentSubCategory, setCurrentSubCategory] =
-    React.useState<string>(categoryData[currentCategory].subCategories[0].name);
+    React.useState<string>(categoryData[currentCategory].subCategories[0]?.name || "");
 
   const [promoProducts, setPromoProducts] = React.useState<product[]>([]);
 
@@ -69,6 +69,11 @@ const Home: React.FC = () => {
       <div className={styles.productsContainer}>
         <div className={styles.productsList}>
           {promoProducts.slice(0, 5).map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))}
+        </div>
+        <div className={styles.productsList}>
+          {promoProducts.slice(5, 10).map((product, index) => (
             <ProductCard key={index} product={product} />
           ))}
         </div>

@@ -58,6 +58,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
+  
+
   // Salvar no localStorage quando favoritos mudarem
   useEffect(() => {
     if (favoritesLoaded) {
@@ -112,7 +114,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         cart,
         setCart,
         currentPage,
-        setCurrentPage,
       }}
     >
       {children}

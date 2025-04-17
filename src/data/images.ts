@@ -1,3 +1,5 @@
+import logo from "../../public/logo.png";
+
 import base1 from "../assets/productsImage/cosmetics/base/base1.jpg";
 import base2 from "../assets/productsImage/cosmetics/base/base2.jpg";
 import base3 from "../assets/productsImage/cosmetics/base/base3.jpg";
@@ -40,3 +42,4 @@ export const corretivoImages = [corretivo1, corretivo2, corretivo3, corretivo4, 
 export const delineadorImages = [delineador1, delineador2, delineador3, delineador4, delineador5];
 export const rimelImages = [rimel1, rimel2, rimel3, rimel4, rimel5];
 export const sombraImages = [sombra1, sombra2, sombra3, sombra4, sombra5];
+export const brandLogo = logo;

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { useAppContext } from "../../context/AppContext";
 import styles from "./HeaderNav.module.css";
 import React from "react";
+import { brandLogo } from "../../data/images";
 
 const menuItems = [
   { label: "Home", action: (navigate: any) => navigate("/") },
@@ -18,7 +19,7 @@ const menuItems = [
 ];
 
 const HeaderNav: React.FC = () => {
-  const { setCurrentCategory, scrollPosition, cart, currentPage, setCurrentPage } = useAppContext();
+  const { setCurrentCategory, scrollPosition, cart, currentPage } = useAppContext();
   const navigate = useNavigate();
 
   return (
@@ -30,7 +31,7 @@ const HeaderNav: React.FC = () => {
           : {}
       }
     >
-      <img onClick={() => navigate("/")} src="./logo.png" alt="Logo" />
+      <img onClick={() => navigate("/")} src={brandLogo} alt="Logo" />
 
       <ul className={styles.headerNav__navList}>
         {menuItems.map((item, index) => (
@@ -39,11 +40,16 @@ const HeaderNav: React.FC = () => {
             className={item.submenu ? styles.dropdown : ""}
             onClick={
               item.action
-                ? () => item.action(navigate)
+                ? () => {
+                  item.action(navigate)
+                  setCurrentPage(item.label.toLowerCase());
+                }
+
                 : item.submenu
                 ? undefined
                 : () => {}
             }
+            style={{borderBottom: currentPage === item.label.toLowerCase() ? '2px solid #000' : 'none'}}
           >
             {item.label}
             {item.submenu && (
@@ -71,7 +77,7 @@ const HeaderNav: React.FC = () => {
       </div>
 
       <div className={styles.headerNav__icon}>
-        <i className="bi bi-cart-fill" />
+        <i className="bi bi-bag-fill" />
         {cart.length > 0 && (
           <span className={styles.headerNav__cartCount}>{cart.length}</span>
         )}
