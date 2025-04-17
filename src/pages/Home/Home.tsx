@@ -10,7 +10,7 @@ import { product } from "../../types";
 const Home: React.FC = () => {
   const { trendingCategories, currentCategory } = useAppContext();
   const [currentSubCategory, setCurrentSubCategory] =
-    React.useState<string>("");
+    React.useState<string>(categoryData[currentCategory].subCategories[0].name);
 
   const [promoProducts, setPromoProducts] = React.useState<product[]>([]);
 

@@ -1,36 +1,86 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
+// AppContext.tsx
+
+import React, {
+  useEffect,
+  useState,
+  createContext,
+  useContext,
+  ReactNode,
+} from "react";
 import { categoryData, categoryItem } from "../data/categoryData";
 
+// Tipagem do contexto
 type AppContextType = {
   currentCategory: string;
   setCurrentCategory: React.Dispatch<React.SetStateAction<string>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
-  trendingCategories?: categoryItem[];
+  trendingCategories: categoryItem[];
   scrollPosition: number;
+  favorites: string[];
+  setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
+  cart: string[];
+  setCart: React.Dispatch<React.SetStateAction<string[]>>;
+  currentPage: string;
+  setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export const AppProvider = ({ children }: { children: React.ReactNode }) => {
+export const AppProvider = ({ children }: { children: ReactNode }) => {
+  // Estados
   const [search, setSearch] = useState("");
-  const [currentCategory, setCurrentCategory] = useState("cosmetics"); // valor padrão
+  const [currentCategory, setCurrentCategory] = useState("cosmetics");
   const [trendingCategories, setTrendingCategories] = useState<categoryItem[]>([]);
-  
-  //get scroll position
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [cart, setCart] = useState<string[]>([]);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const handleScroll = () => {
-    setScrollPosition(window.scrollY);
-  };
+  const [currentPage, setCurrentPage] = useState("home");
+  const [favoritesLoaded, setFavoritesLoaded] = useState(false);
+  const [cartLoaded, setCartLoaded] = useState(false);
 
+
+  // Carregar dados do localStorage
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    if (typeof window !== "undefined") {
+      try {
+        const storedFavorites = localStorage.getItem("favorites");
+        const storedCart = localStorage.getItem("cart");
+
+        if (storedFavorites) setFavorites(JSON.parse(storedFavorites));
+        if (storedCart) setCart(JSON.parse(storedCart));
+      } catch (error) {
+        console.error("Erro ao carregar localStorage:", error);
+      } finally {
+        setFavoritesLoaded(true);
+        setCartLoaded(true);
+      }
+    }
   }, []);
 
+  // Salvar no localStorage quando favoritos mudarem
+  useEffect(() => {
+    if (favoritesLoaded) {
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+  }, [favorites, favoritesLoaded]);
 
+  // Salvar no localStorage quando o carrinho mudar
+  useEffect(() => {
+    if (cartLoaded) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart, cartLoaded]);
+
+  // Atualiza scroll
+  useEffect(() => {
+    const handleScroll = () => setScrollPosition(window.scrollY);
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Atualiza tema e categorias ao mudar de categoria
   useEffect(() => {
     const root = document.documentElement;
     const data = categoryData[currentCategory];
@@ -57,6 +107,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         setSearch,
         trendingCategories,
         scrollPosition,
+        favorites,
+        setFavorites,
+        cart,
+        setCart,
+        currentPage,
+        setCurrentPage,
       }}
     >
       {children}
@@ -64,6 +120,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+// Hook customizado para consumir o contexto
 export const useAppContext = () => {
   const context = useContext(AppContext);
   if (!context) {

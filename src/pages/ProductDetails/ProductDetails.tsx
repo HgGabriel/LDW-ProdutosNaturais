@@ -2,22 +2,44 @@ import React from "react";
 import styles from "./ProductDetails.module.css";
 import { categoryData } from "../../data/categoryData";
 import { Rating } from "react-simple-star-rating";
+import { useAppContext } from "../../context/AppContext";
 
 const ProductDetails: React.FC = () => {
   const [selectedSection, setSelectedSection] = React.useState<string>("description");
   const id = location.pathname.split("/").pop();
+  const { favorites, setFavorites, cart, setCart } = useAppContext();
 
-  const product = Object.values(categoryData).flatMap((category) =>
-    category.products.filter((product) => product.id.toString() === id)
-  )[0];
+  const product = Object.values(categoryData)
+    .flatMap((category) => category.products)
+    .find((product) => product.id.toString() === id);
 
   if (!product) return <p>Produto não encontrado.</p>;
+
+  const productId = product.id.toString();
+  const isFavorite = favorites.includes(productId);
+  const isInCart = cart.includes(productId);
+
+  const toggleFavorite = () => {
+    setFavorites((prev) =>
+      prev.includes(productId)
+        ? prev.filter((id) => id !== productId)
+        : [...prev, productId]
+    );
+  };
+
+  const toggleCart = () => {
+    setCart((prev) =>
+      prev.includes(productId)
+        ? prev.filter((id) => id !== productId)
+        : [...prev, productId]
+    );
+  };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.imageSection}>
-        <div className={styles.favoriteIcon}>
-          <i className="bi bi-heart"></i>
+        <div className={styles.favoriteIcon} onClick={toggleFavorite}>
+          <i className={`bi ${isFavorite ? "bi-heart-fill" : "bi-heart"}`}></i>
         </div>
         <img src={product.image} alt={product.name} />
       </div>
@@ -28,41 +50,37 @@ const ProductDetails: React.FC = () => {
 
         <div className={styles.rating}>
           <p className={styles.price}>R$ {product.price}</p>
-          <Rating showTooltip initialValue={product.rating} readonly allowFraction size={25} />
+          <Rating
+            showTooltip
+            initialValue={product.rating}
+            readonly
+            allowFraction
+            size={25}
+          />
         </div>
 
         <div className={styles.sections}>
-          <div
-            className={styles.section}
-            onClick={() => setSelectedSection("description")}
-            style={{ opacity: selectedSection === "description" ? "1" : "0.2" }}
-          >
-            <p className={styles.sectionText}>Descrição</p>
-          </div>
-          <div
-            className={styles.section}
-            onClick={() => setSelectedSection("howToUse")}
-            style={{ opacity: selectedSection === "howToUse" ? "1" : "0.2" }}
-          >
-            <p className={styles.sectionText}>Como usar</p>
-          </div>
-          <div
-            className={styles.section}
-            onClick={() => setSelectedSection("ingredients")}
-            style={{ opacity: selectedSection === "ingredients" ? "1" : "0.2" }}
-          >
-            <p className={styles.sectionText}>Ingredientes</p>
-          </div>
-          <div
-            className={styles.section}
-            onClick={() => setSelectedSection("reviews")}
-            style={{ opacity: selectedSection === "reviews" ? "1" : "0.2" }}
-          >
-            <p className={styles.sectionText}>Avaliações</p>
-          </div>
+          {["description", "howToUse", "ingredients", "reviews"].map((section) => (
+            <div
+              key={section}
+              className={styles.section}
+              onClick={() => setSelectedSection(section)}
+              style={{ opacity: selectedSection === section ? "1" : "0.2" }}
+            >
+              <p className={styles.sectionText}>
+                {{
+                  description: "Descrição",
+                  howToUse: "Como usar",
+                  ingredients: "Ingredientes",
+                  reviews: "Avaliações",
+                }[section]}
+              </p>
+            </div>
+          ))}
         </div>
-        {/* divider */}
+
         <div className={styles.divider}></div>
+
         <div className={styles.sectionContent}>
           {selectedSection === "description" && (
             <p className={styles.description}>{product.description}</p>
@@ -85,14 +103,15 @@ const ProductDetails: React.FC = () => {
             </div>
           )}
         </div>
+
         <div className={styles.buttons}>
-          <button className={styles.favButton}>
-            <i className="bi bi-heart"></i>
-            <p>ADICIONAR A LISTA DE FAVORITOS</p>
+          <button className={styles.favButton} onClick={toggleFavorite}>
+            <i className={`bi ${isFavorite ? "bi-heart-fill" : "bi-heart"}`}></i>
+            <p>{isFavorite ? "REMOVER DOS FAVORITOS" : "ADICIONAR AOS FAVORITOS"}</p>
           </button>
-          <button className={styles.cartButton}>
+          <button className={styles.cartButton} onClick={toggleCart}>
             <i className="bi bi-cart-fill"></i>
-            <p>ADICIONAR AO CARRINHO</p>
+            <p>{isInCart ? "REMOVER DO CARRINHO" : "ADICIONAR AO CARRINHO"}</p>
           </button>
         </div>
       </div>
