@@ -19,7 +19,7 @@ const menuItems = [
 ];
 
 const HeaderNav: React.FC = () => {
-  const { setCurrentCategory, scrollPosition, cart, currentPage } = useAppContext();
+  const { setCurrentCategory, scrollPosition, cart, currentPage, setCurrentPage } = useAppContext();
   const navigate = useNavigate();
 
   return (
@@ -76,7 +76,7 @@ const HeaderNav: React.FC = () => {
         <i className="bi bi-search"></i>
       </div>
 
-      <div className={styles.headerNav__icon}>
+      <div className={styles.headerNav__icon} onClick={() => navigate("/cart")}>
         <i className="bi bi-bag-fill" />
         {cart.length > 0 && (
           <span className={styles.headerNav__cartCount}>{cart.length}</span>

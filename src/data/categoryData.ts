@@ -1,4 +1,3 @@
-// src/data/categoryData.ts
 
 import baseImg from "../assets/categoryItemImage/cosmetics/base.png";
 import blushImg from "../assets/categoryItemImage/cosmetics/blush.png";
@@ -60,7 +59,7 @@ export const categoryData: CategoryData = {
     ],
     products: [
       {
-        id: 1,
+        id: "1",
         name: "Rímel Volume Extremo",
         description: "Rímel para cílios com efeito volumoso e duradouro.",
         category: "cosmetics",
@@ -74,7 +73,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Cera de abelha", "Pantenol", "Pigmentos pretos intensos"],
       },
       {
-        id: 2,
+        id: "2",
         name: "Rímel Long & Curl",
         description: "Ideal para alongar e curvar os cílios sem pesar.",
         category: "cosmetics",
@@ -88,7 +87,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Vitamina E", "Óleo de rícino", "Cera sintética"],
       },
       {
-        id: 3,
+        id: "3",
         name: "Rímel à Prova D'água",
         description: "Perfeito para dias chuvosos ou ocasiões especiais.",
         category: "cosmetics",
@@ -102,7 +101,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Polímeros resistentes à água", "Pantenol", "Glicerina"],
       },
       {
-        id: 4,
+        id: "4",
         name: "Rímel Natural Look",
         description: "Rímel para um visual leve e natural no dia a dia.",
         category: "cosmetics",
@@ -116,7 +115,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Água purificada", "Pigmento natural", "Aloe vera"],
       },
       {
-        id: 5,
+        id: "5",
         name: "Rímel Definição Máxima",
         description: "Define cada fio com precisão e acabamento profissional.",
         category: "cosmetics",
@@ -130,7 +129,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Cera de carnaúba", "D-pantenol", "Polímeros flexíveis"],
       },
       {
-        id: 6,
+        id: "6",
         name: "Sombra Matte Neutra",
         description: "Paleta com tons neutros matte para looks sofisticados.",
         category: "cosmetics",
@@ -144,7 +143,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Talco", "Mica", "Dimeticona"],
       },
       {
-        id: 7,
+        id: "7",
         name: "Sombra Glow Intenso",
         description: "Tons cintilantes que iluminam o olhar com alta pigmentação.",
         category: "cosmetics",
@@ -158,7 +157,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Mica", "Sílica", "Pigmento perolado"],
       },
       {
-        id: 8,
+        id: "8",
         name: "Sombra Color Pop",
         description: "Cores vibrantes e ousadas para maquiagens criativas.",
         category: "cosmetics",
@@ -172,7 +171,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Óxido de ferro", "Talco", "Estearato de magnésio"],
       },
       {
-        id: 9,
+        id: "9",
         name: "Sombra Nude Elegante",
         description: "Perfeita para uso diário com acabamento suave e natural.",
         category: "cosmetics",
@@ -186,7 +185,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Cera de abelha", "Kaolin", "Tocoferol (Vitamina E)"],
       },
       {
-        id: 10,
+        id:" 10",
         name: "Sombra Compacta Luxo",
         description: "Fórmula aveludada e de longa duração para todas as ocasiões.",
         category: "cosmetics",
@@ -200,7 +199,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Sílica", "Pigmentos minerais", "Cera sintética"],
       },
       {
-        id: 11,
+        id:" 11",
         name: "Delineador Caneta Preciso",
         description: "Caneta delineadora com ponta fina para traços precisos.",
         category: "cosmetics",
@@ -214,7 +213,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Água", "Carbon Black", "Glicerina"],
       },
       {
-        id: 12,
+        id:" 12",
         name: "Delineador Líquido Intenso",
         description: "Cor intensa e acabamento brilhante com longa duração.",
         category: "cosmetics",
@@ -228,7 +227,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Resina acrílica", "Pigmento preto", "Propilenoglicol"],
       },
       {
-        id: 13,
+        id:" 13",
         name: "Delineador em Gel Profissional",
         description: "Ideal para delineados dramáticos com alta fixação.",
         category: "cosmetics",
@@ -242,7 +241,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Cera microcristalina", "Dimeticona", "Parafina"],
       },
       {
-        id: 14,
+        id:" 14",
         name: "Delineador Colorido Fashion",
         description: "Adicione cor ao olhar com este delineador vibrante.",
         category: "cosmetics",
@@ -256,7 +255,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Pigmento colorido", "Glicerina", "Água purificada"],
       },
       {
-        id: 15,
+        id:" 15",
         name: "Delineador Preto Fosco",
         description: "Acabamento matte para um olhar marcante e moderno.",
         category: "cosmetics",
@@ -270,7 +269,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Água", "Carbon Black", "Copolímero de acrilato"],
       },
       {
-        id: 16,
+        id:" 16",
         name: "Blush Rosado Natural",
         description: "Blush em tom rosado para um efeito saudável.",
         category: "cosmetics",
@@ -284,7 +283,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Talco", "Mica", "Estearato de magnésio"],
       },
       {
-        id: 17,
+        id:" 17",
         name: "Blush Compacto Aveludado",
         description: "Textura macia e fácil de esfumar com acabamento natural.",
         category: "cosmetics",
@@ -298,7 +297,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Dimeticona", "Kaolin", "Vitamina E"],
       },
       {
-        id: 18,
+        id:" 18",
         name: "Blush Coral Vibrante",
         description: "Traz cor e vida ao rosto com pigmentação intensa.",
         category: "cosmetics",
@@ -312,7 +311,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Óxidos de ferro", "Sílica", "Estearato de zinco"],
       },
       {
-        id: 19,
+        id:" 19",
         name: "Blush Líquido Glow",
         description: "Textura líquida com brilho suave para um look radiante.",
         category: "cosmetics",
@@ -326,7 +325,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Glicerina", "Pigmentos naturais", "Pantenol"],
       },
       {
-        id: 20,
+        id:" 20",
         name: "Blush Terracota Chic",
         description: "Tom terroso elegante, ideal para peles médias e escuras.",
         category: "cosmetics",
@@ -340,7 +339,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Mica", "Talco", "Vitamina C"],
       },
       {
-        id: 21,
+        id:" 21",
         name: "Base Líquida Matte HD",
         description: "Cobertura média a alta com acabamento matte natural.",
         category: "cosmetics",
@@ -354,7 +353,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Água", "Sílica", "Dimeticona"],
       },
       {
-        id: 22,
+        id:" 22",
         name: "Base Hidratante Glow",
         description: "Fórmula leve com efeito luminoso e hidratação prolongada.",
         category: "cosmetics",
@@ -368,7 +367,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Glicerina", "Ácido hialurônico", "Mica"],
       },
       {
-        id: 23,
+        id:" 23",
         name: "Base Vegana Oil-Free",
         description: "Ideal para peles oleosas, com fórmula leve e cruelty-free.",
         category: "cosmetics",
@@ -382,7 +381,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Extrato de chá verde", "Vitamina E", "Sílica"],
       },
       {
-        id: 24,
+        id:" 24",
         name: "Base Compacta Soft Touch",
         description: "Textura cremosa com toque seco e cobertura uniforme.",
         category: "cosmetics",
@@ -396,7 +395,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Kaolin", "Cera sintética", "Estearato de zinco"],
       },
       {
-        id: 25,
+        id:" 25",
         name: "Base Sérum FPS 25",
         description: "Base com tratamento anti-idade e proteção solar.",
         category: "cosmetics",
@@ -410,7 +409,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Ácido hialurônico", "Filtro solar FPS 25", "Niacinamida"],
       },
       {
-        id: 26,
+        id:" 26",
         name: "Corretivo Alta Cobertura",
         description: "Disfarça olheiras e imperfeições com acabamento uniforme.",
         category: "cosmetics",
@@ -424,7 +423,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Cera sintética", "Pigmentos minerais", "Vitamina E"],
       },
       {
-        id: 27,
+        id:" 27",
         name: "Corretivo Líquido Hidratante",
         description: "Textura fluida que hidrata e corrige suavemente.",
         category: "cosmetics",
@@ -438,7 +437,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Ácido hialurônico", "Glicerina", "Pantenol"],
       },
       {
-        id: 28,
+        id:" 28",
         name: "Corretivo Matte Longa Duração",
         description: "Fórmula resistente ao calor e à oleosidade.",
         category: "cosmetics",
@@ -452,7 +451,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Sílica", "Caulim", "Vitamina C"],
       },
       {
-        id: 29,
+        id:" 29",
         name: "Corretivo Colorido Neutralizador",
         description: "Corretivo em cores para correção de manchas e olheiras.",
         category: "cosmetics",
@@ -466,7 +465,7 @@ export const categoryData: CategoryData = {
         ingredients: ["Pigmentos coloridos", "Cera de abelha", "Talco"],
       },
       {
-        id: 30,
+        id:" 30",
         name: "Corretivo Stick Prático",
         description: "Em formato bastão, ideal para retoques rápidos.",
         category: "cosmetics",

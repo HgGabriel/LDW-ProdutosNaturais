@@ -1,5 +1,3 @@
-// AppContext.tsx
-
 import React, {
   useEffect,
   useState,
@@ -8,8 +6,8 @@ import React, {
   ReactNode,
 } from "react";
 import { categoryData, categoryItem } from "../data/categoryData";
+import { cartItem } from "../types";
 
-// Tipagem do contexto
 type AppContextType = {
   currentCategory: string;
   setCurrentCategory: React.Dispatch<React.SetStateAction<string>>;
@@ -19,8 +17,8 @@ type AppContextType = {
   scrollPosition: number;
   favorites: string[];
   setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
-  cart: string[];
-  setCart: React.Dispatch<React.SetStateAction<string[]>>;
+  cart: cartItem[];
+  setCart: React.Dispatch<React.SetStateAction<cartItem[]>>;
   currentPage: string;
   setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -28,19 +26,17 @@ type AppContextType = {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-  // Estados
+
   const [search, setSearch] = useState("");
   const [currentCategory, setCurrentCategory] = useState("cosmetics");
   const [trendingCategories, setTrendingCategories] = useState<categoryItem[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [cart, setCart] = useState<string[]>([]);
+  const [cart, setCart] = useState<cartItem[]>([]);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [currentPage, setCurrentPage] = useState("home");
   const [favoritesLoaded, setFavoritesLoaded] = useState(false);
   const [cartLoaded, setCartLoaded] = useState(false);
 
-
-  // Carregar dados do localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
       try {
@@ -60,21 +56,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   
 
-  // Salvar no localStorage quando favoritos mudarem
   useEffect(() => {
     if (favoritesLoaded) {
       localStorage.setItem("favorites", JSON.stringify(favorites));
     }
   }, [favorites, favoritesLoaded]);
 
-  // Salvar no localStorage quando o carrinho mudar
   useEffect(() => {
     if (cartLoaded) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart, cartLoaded]);
 
-  // Atualiza scroll
   useEffect(() => {
     const handleScroll = () => setScrollPosition(window.scrollY);
 
@@ -82,7 +75,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Atualiza tema e categorias ao mudar de categoria
   useEffect(() => {
     const root = document.documentElement;
     const data = categoryData[currentCategory];
@@ -114,6 +106,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         cart,
         setCart,
         currentPage,
+        setCurrentPage,
       }}
     >
       {children}
@@ -121,7 +114,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Hook customizado para consumir o contexto
 export const useAppContext = () => {
   const context = useContext(AppContext);
   if (!context) {

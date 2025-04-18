@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Swal from "sweetalert2";
 import styles from "./ProductDetails.module.css";
 import { categoryData } from "../../data/categoryData";
@@ -9,6 +9,12 @@ const ProductDetails: React.FC = () => {
   const [selectedSection, setSelectedSection] = React.useState<string>("description");
   const id = location.pathname.split("/").pop();
   const { favorites, setFavorites, cart, setCart } = useAppContext();
+  
+  useEffect(() => {
+    cart.forEach((item) => {
+      console.log(item)
+    })}, [cart]);
+
 
   const product = Object.values(categoryData)
     .flatMap((category) => category.products)
@@ -16,55 +22,54 @@ const ProductDetails: React.FC = () => {
 
   if (!product) return <p>Produto não encontrado.</p>;
 
-  const productId = product.id.toString();
+  const productId = product.id;
   const isFavorite = favorites.includes(productId);
-  const isInCart = cart.includes(productId);
+  const isInCart = cart.some((item) => item.product.id === productId);
 
   const toggleFavorite = () => {
     setFavorites((prev) =>
       prev.includes(productId)
-        ? prev.filter((id) => id !== productId)
-        : [...prev, productId]
-    );
-  };
+    ? prev.filter((id) => id !== productId)
+    : [...prev, productId]
+  );
+};
 
-  const handleCartToggle = () => {
-    const action = isInCart ? "remover do carrinho" : "adicionar ao carrinho";
-  
-    Swal.fire({
-      title: `Deseja ${action}?`,
-      html: `
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <img src="${product.image}" alt="${product.name}" style="width: 120px; height: auto; border-radius: 10px; margin-bottom: 12px;" />
-          <h3 style="margin: 0;">${product.name}</h3>
-          <p style="font-size: 18px; color: #555;">R$ ${product.price.toFixed(2)}</p>
-        </div>
-      `,
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonText: "Sim",
-      cancelButtonText: "Cancelar",
-      confirmButtonColor: "var(--secondary-color)",
-      cancelButtonColor: "#d33",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setCart((prev) =>
-          prev.includes(productId)
-            ? prev.filter((id) => id !== productId)
-            : [...prev, productId]
-        );
-  
-        Swal.fire({
-          title: isInCart ? "Removido!" : "Adicionado!",
-          text: `Produto ${isInCart ? "removido" : "adicionado"} com sucesso.`,
-          icon: "success",
-          timer: 1500,
-          showConfirmButton: false,
-        });
+const handleCartToggle = () => {
+  const action = isInCart ? "remover do carrinho" : "adicionar ao carrinho";
+
+  Swal.fire({
+    title: `Deseja ${action}?`,
+    html: `
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <img src="${product.image}" alt="${product.name}" style="width: 120px; height: auto; border-radius: 10px; margin-bottom: 12px;" />
+        <h3 style="margin: 0;">${product.name}</h3>
+        <p style="font-size: 18px; color: #555;">R$ ${product.price.toFixed(2)}</p>
+      </div>
+    `,
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Sim",
+    cancelButtonText: "Cancelar",
+    confirmButtonColor: "var(--secondary-color)",
+    cancelButtonColor: "#d33",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      if (isInCart) {
+        setCart((prev) => prev.filter((item) => item.product.id !== productId));
+      } else {
+        setCart((prev) => [...prev, { product, quantity: 1 }]);
       }
-    });
-  };
-  
+
+      Swal.fire({
+        title: isInCart ? "Removido!" : "Adicionado!",
+        text: `Produto ${isInCart ? "removido" : "adicionado"} com sucesso.`,
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    }
+  });
+};
 
   return (
     <div className={styles.wrapper}>
