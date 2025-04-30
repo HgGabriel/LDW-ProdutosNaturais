@@ -64,7 +64,7 @@ const handleCartToggle = () => {
         title: isInCart ? "Removido!" : "Adicionado!",
         text: `Produto ${isInCart ? "removido" : "adicionado"} com sucesso.`,
         icon: "success",
-        timer: 1500,
+        timer: 1000,
         showConfirmButton: false,
       });
     }

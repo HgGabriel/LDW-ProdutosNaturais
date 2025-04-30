@@ -81,13 +81,13 @@ const Cart: React.FC = () => {
   const removeCoupon = () => {
     setAppliedCoupon(false);
     setCouponCode("");
-    Swal.fire({
-      icon: "info",
-      title: "Cupom removido",
-      text: "O cupom foi removido.",
-      timer: 1500,
-      showConfirmButton: false,
-    });
+    // Swal.fire({
+    //   icon: "info",
+    //   title: "Cupom removido",
+    //   text: "O cupom foi removido.",
+    //   timer: 1500,
+    //   showConfirmButton: false,
+    // });
   };
 
   const calculateTotals = () => {
@@ -149,13 +149,13 @@ const Cart: React.FC = () => {
 
             <div className={styles.cartItems}>
               {products.map((item) => (
-                <div key={item.product.id} onClick={()=> navigate(`/product/${item.product.id}`)} className={styles.cartItem}>
-                  <div className={styles.itemImage}>
+                <div key={item.product.id} className={styles.cartItem}>
+                  <div className={styles.itemImage}  onClick={()=> navigate(`/product/${item.product.id}`)}>
                     <img src={item.product.image} alt={item.product.name} />
                   </div>
                   <div className={styles.itemInfo}>
                     <div className={styles.itemHeader}>
-                      <h3>{item.product.name}</h3>
+                      <h3  onClick={()=> navigate(`/product/${item.product.id}`)}>{item.product.name}</h3>
                       <span className={styles.itemPrice}>R$ {(item.product.price * item.quantity).toFixed(2)}</span>
                     </div>
                     <p className={styles.itemDescription}>{item.product.description || "Produto de alta qualidade"}</p>

@@ -43,3 +43,46 @@ export const delineadorImages = [delineador1, delineador2, delineador3, delinead
 export const rimelImages = [rimel1, rimel2, rimel3, rimel4, rimel5];
 export const sombraImages = [sombra1, sombra2, sombra3, sombra4, sombra5];
 export const brandLogo = logo;
+
+import fruta1 from "../assets/productsImage/foods/frutas/fruta1.jpg";
+import fruta2 from "../assets/productsImage/foods/frutas/fruta2.jpg";
+import fruta3 from "../assets/productsImage/foods/frutas/fruta3.jpg";
+import fruta4 from "../assets/productsImage/foods/frutas/fruta4.jpg";
+import fruta5 from "../assets/productsImage/foods/frutas/fruta5.jpg";
+
+import grao1 from "../assets/productsImage/foods/graos/grao1.jpg";
+import grao2 from "../assets/productsImage/foods/graos/grao2.jpg";
+import grao3 from "../assets/productsImage/foods/graos/grao3.jpg";
+import grao4 from "../assets/productsImage/foods/graos/grao4.jpg";
+import grao5 from "../assets/productsImage/foods/graos/grao5.jpg";
+
+import legume1 from "../assets/productsImage/foods/legumes/legume1.jpg";
+import legume2 from "../assets/productsImage/foods/legumes/legume2.jpg";
+import legume3 from "../assets/productsImage/foods/legumes/legume3.jpg";
+import legume4 from "../assets/productsImage/foods/legumes/legume4.jpg";
+import legume5 from "../assets/productsImage/foods/legumes/legume5.jpg";
+
+import outro1 from "../assets/productsImage/foods/outros/outro1.jpg";
+import outro2 from "../assets/productsImage/foods/outros/outro2.jpg";
+import outro3 from "../assets/productsImage/foods/outros/outro3.jpg";
+import outro4 from "../assets/productsImage/foods/outros/outro4.jpg";
+import outro5 from "../assets/productsImage/foods/outros/outro5.jpg";
+
+import receita1 from "../assets/productsImage/foods/receitas/receita1.jpg";
+import receita2 from "../assets/productsImage/foods/receitas/receita2.jpg";
+import receita3 from "../assets/productsImage/foods/receitas/receita3.jpg";
+import receita4 from "../assets/productsImage/foods/receitas/receita4.jpg";
+import receita5 from "../assets/productsImage/foods/receitas/receita5.jpg";
+
+import tuberculo1 from "../assets/productsImage/foods/tuberculos/tuberculo1.jpg";
+import tuberculo2 from "../assets/productsImage/foods/tuberculos/tuberculo2.jpg";
+import tuberculo3 from "../assets/productsImage/foods/tuberculos/tuberculo3.jpg";
+import tuberculo4 from "../assets/productsImage/foods/tuberculos/tuberculo4.jpg";
+import tuberculo5 from "../assets/productsImage/foods/tuberculos/tuberculo5.jpg";
+
+export const frutaImages = [fruta1, fruta2, fruta3, fruta4, fruta5];
+export const graoImages = [grao1, grao2, grao3, grao4, grao5];
+export const legumeImages = [legume1, legume2, legume3, legume4, legume5];
+export const outroImages = [outro1, outro2, outro3, outro4, outro5];
+export const receitaImages = [receita1, receita2, receita3, receita4, receita5];
+export const tuberculoImages = [tuberculo1, tuberculo2, tuberculo3, tuberculo4, tuberculo5];
