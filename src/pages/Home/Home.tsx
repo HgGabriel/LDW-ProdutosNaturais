@@ -6,6 +6,7 @@ import { categoryData } from "../../data/categoryData";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { shuffleArray } from "../../utils";
 import { product } from "../../types";
+import { useNavigate } from "react-router";
 
 const Home: React.FC = () => {
   const { trendingCategories, currentCategory } = useAppContext();
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
     React.useState<string>(categoryData[currentCategory].subCategories[0]?.name || "");
 
   const [promoProducts, setPromoProducts] = React.useState<product[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setPromoProducts(shuffleArray(categoryData[currentCategory].products));
@@ -22,6 +24,20 @@ const Home: React.FC = () => {
   useEffect(() => {
     console.log(currentSubCategory);
   }, [currentSubCategory]);
+
+  useEffect(() => {
+    if (currentCategory === "cosmetics") { 
+      setCurrentSubCategory(categoryData[currentCategory].subCategories[0]?.name || "");
+    }
+
+    if (currentCategory === "supplements") {
+      setCurrentSubCategory(categoryData[currentCategory].subCategories[0]?.name || "");
+    }
+
+    if (currentCategory === "foods") {
+      setCurrentSubCategory(categoryData[currentCategory].subCategories[0]?.name || "");
+    }
+  }, [currentCategory]);
 
   return (
     <div className={styles.homeContainer}>
@@ -61,8 +77,10 @@ const Home: React.FC = () => {
               <ProductCard key={index} product={product} />
             ))}
         </div>
-        <div className={styles.seeMore}>
-          <span>Ver mais</span>
+        <div onClick={() => {
+            navigate("/list")
+          }} className={styles.seeMore}>
+          <span >Ver mais</span>
         </div>
       </div>
       <h1>Promoções</h1>
@@ -77,8 +95,10 @@ const Home: React.FC = () => {
             <ProductCard key={index} product={product} />
           ))}
         </div>
-      <div className={styles.seeMore}>
-        <span>Ver mais</span>
+      <div onClick={() => {
+            navigate("/list")
+          }} className={styles.seeMore}>
+        <span >Ver mais</span>
       </div>
       </div>
     </div>

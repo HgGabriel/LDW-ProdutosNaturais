@@ -19,8 +19,6 @@ type AppContextType = {
   setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
   cart: cartItem[];
   setCart: React.Dispatch<React.SetStateAction<cartItem[]>>;
-  currentPage: string;
-  setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -33,7 +31,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [cart, setCart] = useState<cartItem[]>([]);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [currentPage, setCurrentPage] = useState("home");
   const [favoritesLoaded, setFavoritesLoaded] = useState(false);
   const [cartLoaded, setCartLoaded] = useState(false);
 
@@ -53,8 +50,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       }
     }
   }, []);
-
-  
 
   useEffect(() => {
     if (favoritesLoaded) {
@@ -105,8 +100,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         setFavorites,
         cart,
         setCart,
-        currentPage,
-        setCurrentPage,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useAppContext } from "../../context/AppContext";
 import styles from "./HeaderNav.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { brandLogo } from "../../data/images";
 
 const menuItems = [
@@ -10,17 +10,24 @@ const menuItems = [
     label: "Categorias",
     submenu: [
       { label: "Cosméticos", category: "cosmetics" },
-      { label: "Suplementos", category: "supplements" },
       { label: "Alimentos", category: "foods" },
+      { label: "Suplementos", category: "supplements" },
     ],
   },
-  { label: "Sobre" },
+  { label: "Favoritos", action: (navigate: any) => navigate("/favorites") },
   { label: "Blog" },
 ];
 
 const HeaderNav: React.FC = () => {
-  const { setCurrentCategory, scrollPosition, cart, currentPage, setCurrentPage } = useAppContext();
+  const { setCurrentCategory, scrollPosition, cart, setSearch, search } = useAppContext();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const currentPage = location.pathname.split("/")[1];
+
+  useEffect(() => {
+    console.log(currentPage);
+  }, [currentPage])
 
   return (
     <nav
@@ -41,15 +48,18 @@ const HeaderNav: React.FC = () => {
             onClick={
               item.action
                 ? () => {
-                  item.action(navigate)
-                  setCurrentPage(item.label.toLowerCase());
-                }
-
+                    item.action(navigate);
+                  }
                 : item.submenu
                 ? undefined
                 : () => {}
             }
-            style={{borderBottom: currentPage === item.label.toLowerCase() ? '2px solid #000' : 'none'}}
+            style={{
+              borderBottom:
+                item.label === "Home" && currentPage === ""
+                  ? "2px solid #000"
+                  : "none",
+            }}
           >
             {item.label}
             {item.submenu && (
@@ -72,7 +82,7 @@ const HeaderNav: React.FC = () => {
       </ul>
 
       <div className={styles.headerNav__search}>
-        <input type="text" placeholder="Pesquisar..." />
+        <input type="text" placeholder="Pesquisar..." onChange={(e) => setSearch(e.target.value)} value={search} />
         <i className="bi bi-search"></i>
       </div>
 

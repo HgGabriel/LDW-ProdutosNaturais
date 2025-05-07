@@ -106,8 +106,8 @@ const handleCartToggle = () => {
               <p className={styles.sectionText}>
                 {{
                   description: "Descrição",
-                  howToUse: "Como usar",
-                  ingredients: "Ingredientes",
+                  howToUse: "Instruções",
+                  ingredients: "Contém",
                   reviews: "Avaliações",
                 }[section]}
               </p>
